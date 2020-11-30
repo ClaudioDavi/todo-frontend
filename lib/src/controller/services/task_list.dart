@@ -14,10 +14,17 @@ Future<TaskList> getTaskList(int taskListId) async {
   }
 }
 
-Future<TaskList> getAllTaskLists() async {
+Future<List<TaskList>> getAllTaskLists() async {
   final response = await fetchAllTaskLists();
   if (response.statusCode == 200) {
-    return TaskList.fromJson(json.decode(response.body));
+    var lists = json.decode(response.body);
+    var taskLists = new List<TaskList>();
+
+    for(var l in lists) {
+      taskLists.add(TaskList.fromJson(l));
+    }
+
+    return taskLists;
   } else {
     throw Exception('Failed to load Task');
   }

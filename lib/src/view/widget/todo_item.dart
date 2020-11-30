@@ -4,7 +4,9 @@ import 'package:todo_app/src/models/task.dart';
 
 class TodoListItem extends StatefulWidget {
   Task task;
+
   TodoListItem({Key key, this.task}) : super(key: key);
+
   @override
   TodoListItemState createState() {
     return TodoListItemState();
@@ -18,7 +20,7 @@ class TodoListItemState extends State<TodoListItem> {
     return new Card(
       child: ListTile(
         title: new Text(widget.task.title),
-        subtitle: new Text(widget.task.date.toString()),
+        subtitle: new Text(widget.task.date.toString().split(" ")[0]),
         trailing: new Checkbox(
           value: widget.task.completed,
           onChanged: (newValue) async {
@@ -32,9 +34,3 @@ class TodoListItemState extends State<TodoListItem> {
     );
   }
 }
-
-
-//
-// Widget TodoItem(Task task) {
-//
-// }

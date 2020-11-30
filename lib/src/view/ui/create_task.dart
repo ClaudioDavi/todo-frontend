@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:todo_app/src/controller/services/task.dart';
 import 'package:todo_app/src/models/task.dart';
@@ -51,7 +49,7 @@ class CreateTaskFormState extends State<CreateTaskForm> {
                 await createTask(task);
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text('Saving Task')));
-                await Navigator.pop(context);
+                Navigator.pop(context);
               } on Exception catch (e) {
                 print(e);
               }
