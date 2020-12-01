@@ -30,7 +30,12 @@ Future<List<Task>> getAllTasks() async {
 }
 
 Future<List<Task>> getTasksByTaskList(int taskListId) async {
+  if (taskListId == 0) {
+    return await getAllTasks();
+  }
+
   final response = await fetchTaskByTaskListId(taskListId);
+
   if (response.statusCode == 200) {
     var tasks = json.decode(response.body);
     var taskList = new List<Task>();

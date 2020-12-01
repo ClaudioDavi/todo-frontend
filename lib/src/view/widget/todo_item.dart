@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/src/controller/api/task.dart';
 import 'package:todo_app/src/models/task.dart';
 
+typedef void TaskCallback(Task t);
+
 class TodoListItem extends StatefulWidget {
   Task task;
+  final TaskCallback taskCallback;
 
-  TodoListItem({Key key, this.task}) : super(key: key);
+  TodoListItem({Key key, this.task, this.taskCallback}) : super(key: key);
 
   @override
   TodoListItemState createState() {
@@ -30,6 +33,9 @@ class TodoListItemState extends State<TodoListItem> {
             await putTask(widget.task);
           },
         ),
+        onTap: () {
+          widget.taskCallback(widget.task);
+        },
       ),
     );
   }

@@ -10,11 +10,13 @@ Access Local Django REST API
 ### Features Complete:
 Accessing LOCAL API to list create tasks.
 Updating Tasks on Main page
+Update Task Info
+App Drawer with Task Lists
+Filter Tasks based on Task Lists
 
 ### Features In development
-- Edit info on task (Endpoint and backend ready, needs widget)
-- List all TaskLists (Endpoint and backend ready, needs widget)
 - Create new TaskList
+- Add Task List to Task inside creation Task interface
 - Navigation Menu and UI Improvements.
     - Drawer UI
     - Color Schema

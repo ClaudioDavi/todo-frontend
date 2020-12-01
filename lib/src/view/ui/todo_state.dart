@@ -21,7 +21,8 @@ class _TodoState extends State<TodoState> {
   @override
   void initState() {
     super.initState();
-    futureTasks = getAllTasks();
+    taskListId = 0;
+    futureTasks = getTasksByTaskList(taskListId);
     futureTaskList = getAllTaskLists();
   }
 
@@ -44,28 +45,39 @@ class _TodoState extends State<TodoState> {
                       ? Text("${snapshot.error}")
                       : Text("${snapshot.data}");
                 }
-                return TodoList(snapshot.data);
+                return TodoList(snapshot.data, (Task task) {
+                  _addTodoItemScreen(task);
+                });
               },
             ),
           ),
           floatingActionButton: new FloatingActionButton(
-              onPressed: _addTodoItemScreen,
+              onPressed: () {
+                _addTodoItemScreen(
+                    new Task(completed: false, date: DateTime.now()));
+              },
               tooltip: 'Create TODO',
               child: new Icon(Icons.add)),
         ));
   }
 
-  _addTodoItemScreen() async {
+  _addTodoItemScreen(Task task) async {
     await Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
       return new Scaffold(
         appBar: AppBar(
-          title: new Text('Create Task'),
+          title: new Text(task.id != null? 'Edit Task' : 'Create Task'),
         ),
-        body: new CreateTaskForm(),
+        body: new CreateTaskForm(task: task),
       );
     }));
     setState(() {
       futureTasks = getAllTasks();
+    });
+  }
+
+  _updateTaskList(int id) {
+    setState(() {
+      futureTasks = getTasksByTaskList(id);
     });
   }
 
@@ -88,7 +100,9 @@ class _TodoState extends State<TodoState> {
                         ? Text("${snapshot.error}")
                         : Text("${snapshot.data}");
                   }
-                  return TaskListDrawer(snapshot.data);
+                  return TaskListDrawer(snapshot.data, (id) {
+                    _updateTaskList(id);
+                  });
                 },
               )
             ],
