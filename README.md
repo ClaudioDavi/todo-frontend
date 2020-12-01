@@ -5,14 +5,15 @@ TODO App
 Using MVC Architecture.
 Access Local Django REST API
 
-- IN PROGRESS
+## WIP
 
 ### Features Complete:
-Accessing LOCAL API to list create tasks.
-Updating Tasks on Main page
-Update Task Info
-App Drawer with Task Lists
-Filter Tasks based on Task Lists
+
+- Accessing LOCAL API to list create tasks.
+- Updating Tasks on Main page
+- Update Task Info
+- App Drawer with Task Lists
+- Filter Tasks based on Task Lists
 
 ### Features In development
 - Create new TaskList
